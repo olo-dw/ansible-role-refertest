@@ -13,6 +13,8 @@ Requirements
 Role Variables
 --------------
 
+* refertest_package_url: Package download URL (mandatory)
+
 * refertest_db_name: 'refertest'
 * refertest_db_user: 'Refertest_user'
 * refertest_db_password: 'Refertest'

@@ -1,0 +1,35 @@
+---
+- name: Package - Ensure to be abble to unarchive.
+  apt:
+    pkg: 'unzip'
+    state: present
+
+- name: Package - Ensure temporary dir is present.
+  file:
+    path: "{{ refertest_tmp_dir }}"
+    state: directory
+
+- name: Package - Download package file.
+  get_url:
+    url: "{{ refertest_package_url }}"
+    dest: "{{ refertest_tmp_dir }}/refertest.zip"
+
+- name: Package - Ensure downloaded file is uncompressed.
+  unarchive:
+    src: "{{ refertest_tmp_dir }}/refertest.zip"
+    dest: "{{ refertest_tmp_dir }}"
+    copy: no
+    creates: "{{ refertest_tmp_dir }}/refertest/LICENSE"
+
+- name: Package - Ensure war file is present.
+  copy:
+    src: "{{ refertest_tmp_dir }}/refertest/webapps/ROOT.war"
+    dest: "{{refertest_dir }}/refertest.war"
+    remote_src: yes
+    owner: "{{ refertest_user }}"
+    group: "{{ refertest_group }}"
+
+- name: Package - Ensure temporary dir is removed.
+  file:
+    path: "{{ refertest_tmp_dir }}"
+    state: absent
