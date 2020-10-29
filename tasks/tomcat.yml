@@ -3,3 +3,8 @@
   file:
     path: "{{ refertest_tomcat_dir }}"
     state: directory
+
+- name: Tomcat - Ensure tomcat service is started.
+  service:
+    name: tomcat
+    state: started
