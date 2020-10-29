@@ -19,3 +19,4 @@
     state: directory
 
 - include_tasks: mysql.yml
+- include_tasks: tomcat.yml

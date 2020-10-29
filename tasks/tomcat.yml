@@ -1,0 +1,5 @@
+---
+- name: Tomcat - Ensure Tomcat directory is present.
+  file:
+    path: "{{ refertest_tomcat_dir }}"
+    state: directory
