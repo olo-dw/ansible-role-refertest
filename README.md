@@ -13,11 +13,22 @@ Requirements
 Role Variables
 --------------
 
-* refertest_package_url: Package download URL (mandatory)
+Mandatory:
 
-* refertest_db_name: 'refertest'
-* refertest_db_user: 'Refertest_user'
-* refertest_db_password: 'Refertest'
+* refertest_package_url: Package download URL
+* refertest_license_key: 'LICENSE_KEY'
+* refertest_owner_name: 'YourCompany'
+
+Default:
+
+```
+refertest_db_host: 'localhost'
+refertest_db_port: 3306
+refertest_db_name: 'refertest'
+refertest_db_user: 'Refertest_user'
+refertest_db_password: 'Refertest'
+refertest_server: 'localhost'
+```
 
 Example Playbook
 ----------------

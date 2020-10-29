@@ -1,9 +1,14 @@
 ---
+refertest_db_host: 'localhost'
+refertest_db_port: 3306
 refertest_db_name: 'refertest'
 refertest_db_user: 'Refertest_user'
 refertest_db_password: 'Refertest'
 
 refertest_dir: '/opt/refertest'
+refertest_license_key: 'LICENSE_KEY'
+refertest_owner_name: 'YourCompany'
+refertest_server: 'localhost'
 refertest_user: 'refertest'
 refertest_group: 'tomcat'
 

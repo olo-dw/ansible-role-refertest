@@ -20,11 +20,20 @@
     path: "{{ refertest_tomcat_dir }}/webapps/refertest/WEB-INF/web.xml"
   register: refertest_web
 
+- name: Tomcat - Ensure context.xml is present.
+  template:
+    src: 'context.xml.j2'
+    dest: "{{ refertest_tomcat_dir }}/conf/context.xml"
+    owner: 'tomcat'
+    group: 'tomcat'
+    mode: 0755
+  register: refertest_context_xml
+
 - name: Tomcat - Restart if needed.
   service:
     name: tomcat
     state: restarted
-  when: not refertest_web.stat.exists
+  when: not refertest_web.stat.exists or refertest_context_xml.changed
 
 - name: Tomcat - Ensure tomcat service is started.
   service:
