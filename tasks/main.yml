@@ -1,2 +1,13 @@
 ---
+- name: Ensure refertest group is present.
+  group:
+    name: "{{ refertest_group }}"
+    state: present
+
+- name: Ensure refertest user is present.
+  user:
+    name: "{{ refertest_user }}"
+    group: "{{ refertest_group }}"
+    state: present
+
 - include_tasks: mysql.yml
