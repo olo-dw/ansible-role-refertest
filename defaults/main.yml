@@ -3,5 +3,6 @@ refertest_db_name: 'refertest'
 refertest_db_user: 'Refertest_user'
 refertest_db_password: 'Refertest'
 
+refertest_dir: '/opt/refertest'
 refertest_user: 'refertest'
 refertest_group: 'refertest'

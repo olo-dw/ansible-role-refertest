@@ -10,4 +10,12 @@
     group: "{{ refertest_group }}"
     state: present
 
+- name: Ensure refertest directory is present.
+  file:
+    path: "{{ refertest_dir }}"
+    owner: "{{ refertest_user }}"
+    group: "{{ refertest_group }}"
+    mode: 0750
+    state: directory
+
 - include_tasks: mysql.yml
