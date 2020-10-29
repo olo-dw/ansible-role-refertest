@@ -4,6 +4,17 @@
     path: "{{ refertest_tomcat_dir }}"
     state: directory
 
+- name: Tomcat - Ensure war file is present into tomcat.
+  copy:
+    src: "{{ refertest_dir }}/refertest.war"
+    dest: "{{ refertest_tomcat_dir }}/webapps/refertest.war"
+    remote_src: yes
+    owner: 'tomcat'
+    group: "{{ refertest_group }}"
+    mode: 0550
+  register: refertest_copy_result
+  changed_when: refertest_copy_result.checksum != refertest_war.stat.checksum
+
 - name: Tomcat - Ensure tomcat service is started.
   service:
     name: tomcat

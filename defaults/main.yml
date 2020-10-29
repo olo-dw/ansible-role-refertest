@@ -5,7 +5,7 @@ refertest_db_password: 'Refertest'
 
 refertest_dir: '/opt/refertest'
 refertest_user: 'refertest'
-refertest_group: 'refertest'
+refertest_group: 'tomcat'
 
 refertest_tmp_dir: '/tmp/refertest'
 refertest_tomcat_dir: '/opt/tomcat'

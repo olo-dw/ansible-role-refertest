@@ -18,7 +18,12 @@
     mode: 0750
     state: directory
 
+- name: Check war file is present.
+  stat:
+    path: "{{ refertest_dir }}/refertest.war"
+  register: refertest_war
+
 - include_tasks: mysql.yml
 - include_tasks: package.yml
-  when: refertest_package_url is defined
+  when: refertest_package_url is defined and refertest_war.stat.exists == false
 - include_tasks: tomcat.yml
