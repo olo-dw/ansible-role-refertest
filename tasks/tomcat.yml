@@ -15,6 +15,17 @@
   register: refertest_copy_result
   changed_when: refertest_copy_result.checksum != refertest_war.stat.checksum
 
+- name: Tomcat - Ensure war file is deployed.
+  stat:
+    path: "{{ refertest_tomcat_dir }}/webapps/refertest/WEB-INF/web.xml"
+  register: refertest_web
+
+- name: Tomcat - Restart if needed.
+  service:
+    name: tomcat
+    state: restarted
+  when: not refertest_web.stat.exists
+
 - name: Tomcat - Ensure tomcat service is started.
   service:
     name: tomcat
