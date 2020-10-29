@@ -1,2 +1,4 @@
 ---
-# defaults file for ansible-role-refertest
+refertest_db_name: 'refertest'
+refertest_db_user: 'Refertest_user'
+refertest_db_password: 'Refertest'

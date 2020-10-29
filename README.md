@@ -13,6 +13,10 @@ Requirements
 Role Variables
 --------------
 
+* refertest_db_name: 'refertest'
+* refertest_db_user: 'Refertest_user'
+* refertest_db_password: 'Refertest'
+
 Example Playbook
 ----------------
 

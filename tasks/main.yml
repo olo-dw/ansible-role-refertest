@@ -1,2 +1,2 @@
 ---
-# tasks file for ansible-role-refertest
+- include_tasks: mysql.yml

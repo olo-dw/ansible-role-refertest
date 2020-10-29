@@ -1,0 +1,14 @@
+---
+- name: Mysql - Ensure database is created.
+  mysql_db:
+    name: "{{ refertest_db_name }}"
+    encoding: utf8
+    collation: utf8_general_ci
+    state: present
+
+- name: Mysql - Ensure refertest db user is present.
+  mysql_user:
+    name: "{{ refertest_db_user }}"
+    password: "{{ refertest_db_password }}"
+    priv: "{{ refertest_db_name }}.*:ALL"
+    state: present
