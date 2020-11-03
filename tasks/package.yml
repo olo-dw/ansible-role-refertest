@@ -13,6 +13,7 @@
   get_url:
     url: "{{ refertest_package_url }}"
     dest: "{{ refertest_tmp_dir }}/refertest.zip"
+    validate_certs: no
 
 - name: Package - Ensure downloaded file is uncompressed.
   unarchive:
