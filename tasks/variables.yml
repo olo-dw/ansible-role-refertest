@@ -1,0 +1,7 @@
+---
+- include_vars: main.yml
+
+- name: Variables - Define mysql connector.
+  set_fact:
+    refertest_mysql_connector: "{{ __refertest_mysql_connector }}"
+  when: refertest_mysql_connector is not defined

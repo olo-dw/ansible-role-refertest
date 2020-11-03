@@ -1,4 +1,6 @@
 ---
+- include_tasks: variables.yml
+
 - name: Ensure refertest group is present.
   group:
     name: "{{ refertest_group }}"

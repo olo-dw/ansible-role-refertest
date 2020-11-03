@@ -1,2 +1,2 @@
 ---
-# vars file for ansible-role-refertest
+__refertest_mysql_connector: "mysql-connector-java-5.1.21.jar"
