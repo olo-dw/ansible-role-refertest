@@ -18,6 +18,14 @@
     mode: 0750
     state: directory
 
+- name: Ensure resources directory is present.
+  file:
+    path: "{{ refertest_resources_dir }}"
+    owner: "{{ refertest_user }}"
+    group: "{{ refertest_group }}"
+    mode: 0770
+    state: directory
+
 - name: Check war file is present.
   stat:
     path: "{{ refertest_dir }}/refertest.war"
