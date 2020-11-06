@@ -15,3 +15,4 @@ refertest_group: 'tomcat'
 refertest_resources_dir: "{{ refertest_dir }}/resources"
 refertest_tmp_dir: '/tmp/refertest'
 refertest_tomcat_dir: '/opt/tomcat'
+refertest_context_path: 'ROOT'

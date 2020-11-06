@@ -7,7 +7,7 @@
 - name: Tomcat - Ensure war file is present into tomcat.
   copy:
     src: "{{ refertest_dir }}/refertest.war"
-    dest: "{{ refertest_tomcat_dir }}/webapps/refertest.war"
+    dest: "{{ refertest_tomcat_dir }}/webapps/{{ refertest_context_path }}.war"
     remote_src: yes
     owner: 'tomcat'
     group: "{{ refertest_group }}"
@@ -15,10 +15,16 @@
   register: refertest_copy_result
   changed_when: refertest_copy_result.checksum != refertest_war.stat.checksum
 
-- name: Tomcat - Ensure war file is deployed.
+- name: "Tomcat - Ensure war file is deployed ({{ refertest_mysql_connector }} as a signature)."
   stat:
-    path: "{{ refertest_tomcat_dir }}/webapps/refertest/WEB-INF/web.xml"
-  register: refertest_web
+    path: "{{ refertest_tomcat_dir }}/webapps/{{ refertest_context_path }}/WEB-INF/lib/{{ refertest_mysql_connector }}"
+  register: refertest_deployed
+
+- name: Tomcat - Ensure default ROOT do not interfer.
+  file:
+    path: "{{ refertest_tomcat_dir }}/webapps/{{ refertest_context_path }}"
+    state: absent
+  when: refertest_context_path == 'ROOT' and refertest_deployed.stat.exists == false
 
 - name: Tomcat - Ensure context.xml is present.
   template:
@@ -33,7 +39,7 @@
   service:
     name: tomcat
     state: restarted
-  when: not refertest_web.stat.exists or refertest_context_xml.changed
+  when: not refertest_deployed.stat.exists or refertest_context_xml.changed
 
 - name: Tomcat - Ensure tomcat service is started.
   service:
